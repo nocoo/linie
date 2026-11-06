@@ -5,6 +5,10 @@ body {
   margin: 0;
   background: var(--paper);
 }
+.radix-themes {
+  font-size: var(--type-body);
+  line-height: 1.4;
+}
 button,
 input,
 select {
@@ -88,6 +92,7 @@ button:disabled {
 .ruler-top span {
   position: relative;
   width: 1px;
+  white-space: nowrap;
 }
 .ruler-top span::after {
   content: "";
@@ -255,6 +260,7 @@ button:disabled {
   margin: 6px 0 2px;
   font-size: var(--type-body);
   font-weight: 600;
+  line-height: 1.2;
   color: var(--ink);
 }
 .metric p {
@@ -411,7 +417,7 @@ button:disabled {
 }
 .inventory-table .rt-TableColumnHeaderCell {
   height: 25px;
-  font-size: 9px;
+  font-size: var(--type-small);
   color: var(--muted);
   font-weight: 500;
   border-bottom: 1px solid var(--rule);
@@ -458,7 +464,7 @@ button:disabled {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 10px;
+  font-size: var(--type-small);
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -510,7 +516,7 @@ button:disabled {
 }
 .panel-footnote > strong {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: var(--type-small);
 }
 .panel-footnote p {
   margin: 2px 0 0;
@@ -538,14 +544,14 @@ button:disabled {
 }
 .topology-caption > span {
   color: var(--accent);
-  font-size: 10px;
+  font-size: var(--type-small);
 }
 .topology-drawing {
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 38px 28px;
-  margin: 16px 4px 13px;
+  gap: 28px 28px;
+  margin: 14px 4px 12px;
 }
 .topology-wires {
   position: absolute;
@@ -569,8 +575,9 @@ button:disabled {
   align-items: stretch;
   justify-content: flex-start;
   flex-direction: column;
-  gap: 5px;
-  height: 82px;
+  gap: 4px;
+  min-height: 84px;
+  height: auto;
   padding: 7px 8px;
   color: var(--ink);
   font-weight: 400;
@@ -610,13 +617,13 @@ button:disabled {
   opacity: 1;
 }
 .node-detail {
-  font-size: 10px;
+  font-size: var(--type-small);
   line-height: 1.3;
 }
 .node-meta {
   color: var(--muted);
-  font: 8px / 1.1 var(--mono);
-  white-space: nowrap;
+  font: var(--type-small) / 1.2 var(--mono);
+  overflow-wrap: anywhere;
 }
 .connector {
   position: absolute;
@@ -641,7 +648,7 @@ button:disabled {
   margin: 10px 0 6px;
   padding-bottom: 6px;
   border-bottom: 1px solid var(--rule);
-  font: 10px / 1.3 var(--mono);
+  font: var(--type-small) / 1.3 var(--mono);
 }
 .subsection-heading > span {
   color: var(--muted);
@@ -652,11 +659,11 @@ button:disabled {
   grid-template-columns: 87px 1fr 82px 45px 7px;
   gap: 5px;
   align-items: center;
-  min-height: 24px;
+  min-height: 22px;
   font-size: var(--type-small);
 }
 .protocol-row > strong {
-  font: 600 10px / 1.2 var(--mono);
+  font: 600 var(--type-small) / 1.2 var(--mono);
 }
 .protocol-row > span:nth-child(3) {
   text-align: right;
@@ -665,7 +672,7 @@ button:disabled {
 .protocol-row > span:nth-child(4) {
   text-align: right;
   color: var(--muted);
-  font: 10px var(--mono);
+  font: var(--type-small) var(--mono);
 }
 .protocol-row > .status-dot {
   margin-left: auto;
@@ -694,15 +701,15 @@ button:disabled {
 }
 .mini-metrics span {
   color: var(--muted);
-  font-size: 10px;
-  white-space: nowrap;
+  font-size: var(--type-small);
+  line-height: 1.3;
 }
 .topology-note {
   display: flex;
   align-items: center;
   gap: 6px;
   margin-top: 10px;
-  font-size: 10px;
+  font-size: var(--type-small);
   line-height: 1.4;
 }
 .region-list {
@@ -741,7 +748,7 @@ button:disabled {
   padding: 2px 6px;
   border: 1px solid;
   box-shadow: none;
-  font: 500 9px / 1 var(--mono);
+  font: 500 var(--type-small) / 1 var(--mono);
   border-radius: 0;
 }
 .stamp-good {
@@ -790,7 +797,7 @@ button:disabled {
   align-items: center;
   justify-content: space-between;
   gap: 4px;
-  font-size: 10px;
+  font-size: var(--type-small);
   color: var(--muted);
 }
 .resilience-chain {
@@ -809,7 +816,7 @@ button:disabled {
 }
 .fine-print {
   margin: 8px 0 0;
-  font-size: 10px;
+  font-size: var(--type-small);
   line-height: 1.6;
   color: var(--muted);
 }
@@ -832,7 +839,7 @@ button:disabled {
 }
 .incident-heading > span:last-child {
   margin-left: auto;
-  font: 9px / 1 var(--mono);
+  font: var(--type-small) / 1 var(--mono);
   color: var(--muted);
 }
 .incident-critical .incident-heading > strong {
@@ -843,7 +850,7 @@ button:disabled {
 }
 .incident > p {
   margin: 5px 0 4px;
-  font-size: 10px;
+  font-size: var(--type-small);
   line-height: 1.4;
 }
 .incident-action {
@@ -853,7 +860,7 @@ button:disabled {
   gap: 6px;
 }
 .incident-action > code {
-  font: 9px / 1.3 var(--mono);
+  font: var(--type-small) / 1.3 var(--mono);
   color: var(--muted);
 }
 .incident-action .rt-Button {
@@ -862,12 +869,11 @@ button:disabled {
   min-height: 0;
   height: auto;
   line-height: 1.4;
-  font-size: 10px;
+  font-size: var(--type-small);
   gap: 2px;
 }
 .incidents-panel .fine-print {
   margin-top: 4px;
-  font-size: 9px;
 }
 .telemetry-toolbar {
   display: flex;
@@ -879,7 +885,7 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 12px;
-  font: 10px / 1 var(--mono);
+  font: var(--type-small) / 1 var(--mono);
 }
 .chart-legend > span {
   display: inline-flex;
@@ -897,10 +903,10 @@ button:disabled {
 }
 .unit-label {
   color: var(--muted);
-  font-size: 9px;
+  font-size: var(--type-small);
 }
 .rt-SegmentedControlItemLabel {
-  font: 10px / 1 var(--mono);
+  font: var(--type-small) / 1 var(--mono);
 }
 .traffic-chart {
   display: flex;
@@ -920,7 +926,7 @@ button:disabled {
   justify-content: space-between;
   padding-right: 5px;
   text-align: right;
-  font: 8px / 1 var(--mono);
+  font: var(--type-small) / 1 var(--mono);
   color: var(--muted);
 }
 .chart-x-labels {
@@ -928,7 +934,7 @@ button:disabled {
   display: flex;
   justify-content: space-between;
   padding-top: 5px;
-  font: 8px / 1 var(--mono);
+  font: var(--type-small) / 1 var(--mono);
   color: var(--muted);
 }
 .resource-meters {
@@ -941,7 +947,7 @@ button:disabled {
   display: flex;
   justify-content: space-between;
   margin-bottom: 7px;
-  font: 9px / 1 var(--mono);
+  font: var(--type-small) / 1 var(--mono);
 }
 .resource-meters label > span {
   color: var(--muted);
@@ -965,7 +971,7 @@ button:disabled {
 }
 .journal-entry time {
   color: var(--muted);
-  font: 10px / 1.4 var(--mono);
+  font: var(--type-small) / 1.4 var(--mono);
 }
 .journal-entry strong {
   font-size: var(--type-small);
@@ -974,7 +980,7 @@ button:disabled {
 .journal-entry p {
   margin: 3px 0 0;
   color: var(--muted);
-  font: 9px / 1.3 var(--mono);
+  font: var(--type-small) / 1.3 var(--mono);
 }
 .journal-entry > .status-dot {
   margin-left: auto;
@@ -988,11 +994,11 @@ button:disabled {
   margin-top: 4px;
 }
 .journal-footer > strong {
-  font: 600 9px / 1.3 var(--mono);
+  font: 600 var(--type-small) / 1.3 var(--mono);
 }
 .journal-footer p {
   color: var(--muted);
-  font-size: 10px;
+  font-size: var(--type-small);
   line-height: 1.5;
   margin: 4px 0 0;
 }
@@ -1013,10 +1019,10 @@ button:disabled {
   gap: 8px;
   padding: 10px;
   border-bottom: 1px solid var(--rule-soft);
-  font-size: 10px;
+  font-size: var(--type-small);
 }
 .footer-legend strong {
-  font: 9px var(--mono);
+  font: var(--type-small) var(--mono);
 }
 .footer-legend span {
   display: flex;
@@ -1027,7 +1033,7 @@ button:disabled {
   margin: 0;
   padding: 7px 10px;
   color: var(--muted);
-  font: 9px / 1.4 var(--mono);
+  font: var(--type-small) / 1.4 var(--mono);
 }
 .footer-spec,
 .footer-signature {
@@ -1036,11 +1042,11 @@ button:disabled {
   justify-content: center;
   gap: 5px;
   padding: 9px 12px;
-  font: 9px / 1.3 var(--mono);
+  font: var(--type-small) / 1.3 var(--mono);
 }
 .footer-spec > strong,
 .footer-signature > strong {
-  font-size: 10px;
+  font-size: var(--type-small);
 }
 .footer-spec > span,
 .footer-signature > span {
@@ -1085,7 +1091,7 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font: 10px / 1 var(--mono);
+  font: var(--type-small) / 1 var(--mono);
   color: var(--muted);
   margin-bottom: 14px;
 }
@@ -1228,7 +1234,7 @@ button:disabled {
     margin: 11px 0 8px;
   }
   .topology-drawing {
-    gap: 48px 36px;
+    gap: 36px 36px;
   }
   .topology-node.rt-Button {
     height: 98px;
@@ -1242,7 +1248,7 @@ button:disabled {
     font-size: 12px;
   }
   .node-meta {
-    font-size: 10px;
+    font-size: var(--type-small);
   }
   .protocol-row {
     min-height: 28px;
@@ -1274,8 +1280,7 @@ button:disabled {
     font-size: 20px;
   }
   .drawing-metadata {
-    width: 360px;
-    font-size: 9px;
+    width: 405px;
   }
   .metric {
     padding-left: 9px;
@@ -1284,7 +1289,7 @@ button:disabled {
     right: 6px;
   }
   .metric p {
-    font-size: 10px;
+    font-size: var(--type-small);
   }
   .panel-label {
     display: none;
@@ -1326,18 +1331,12 @@ button:disabled {
   .node-label {
     font-size: 6px;
   }
-  .node-detail {
-    font-size: 9px;
-  }
   .node-meta {
-    font-size: 7px;
+    display: none;
   }
   .protocol-row {
-    grid-template-columns: 75px 1fr 65px 35px 5px;
-    font-size: 10px;
-  }
-  .protocol-row > strong {
-    font-size: 9px;
+    grid-template-columns: 82px 1fr 65px 40px 5px;
+    font-size: var(--type-small);
   }
   .mini-metrics > div {
     padding: 8px 5px;
@@ -1346,7 +1345,7 @@ button:disabled {
     font-size: 19px;
   }
   .mini-metrics span {
-    font-size: 8px;
+    font-size: var(--type-small);
   }
   .region-card {
     padding: 8px;
@@ -1358,10 +1357,9 @@ button:disabled {
     font-size: 11px;
   }
   .region-health {
-    font-size: 9px;
+    flex-wrap: wrap;
   }
   .stamp.rt-Badge {
-    font-size: 8px;
     padding: 2px 4px;
   }
   .incident-heading > span:last-child {
@@ -1391,7 +1389,7 @@ button:disabled {
     font-size: 11px;
   }
 }
-@media (max-width: 1050px) {
+@media (max-width: 1150px) {
   .brand-titles {
     display: block;
   }
@@ -1506,14 +1504,17 @@ button:disabled {
     height: 38px;
   }
   .brand p {
-    font-size: 8px;
+    font-size: var(--type-small);
     letter-spacing: 0.2px;
   }
   .brand-caption {
-    font-size: 10px;
+    font-size: var(--type-small);
   }
   .drawing-metadata {
     width: 100%;
+  }
+  .drawing-metadata > div > * {
+    white-space: normal;
   }
   .metric-strip {
     grid-template-columns: 1fr 1fr;
@@ -1594,16 +1595,12 @@ button:disabled {
   .topology-node strong svg {
     display: none;
   }
-  .node-meta {
-    white-space: normal;
-    font-size: 7px;
-  }
   .protocol-row {
-    grid-template-columns: 71px 1fr 61px 32px 5px;
+    grid-template-columns: 82px 1fr 65px 40px 5px;
     gap: 3px;
   }
   .protocol-row > span:nth-child(2) {
-    font-size: 9px;
+    font-size: var(--type-small);
   }
   .mini-metrics {
     gap: 5px;
@@ -1612,7 +1609,7 @@ button:disabled {
     font-size: 20px;
   }
   .mini-metrics span {
-    font-size: 9px;
+    font-size: var(--type-small);
     white-space: normal;
   }
   .region-list {
@@ -1642,7 +1639,7 @@ button:disabled {
     font-size: 11px;
   }
   .incident-action > code {
-    font-size: 10px;
+    font-size: var(--type-small);
     max-width: none;
   }
   .incident-action .rt-Button {
@@ -1652,7 +1649,7 @@ button:disabled {
     display: block;
   }
   .journal-entry p {
-    font-size: 10px;
+    font-size: var(--type-small);
   }
   .atlas-footer {
     display: flex;
