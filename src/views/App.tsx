@@ -11,23 +11,26 @@ import { JournalPanel } from "./JournalPanel";
 import { RegionsPanel } from "./RegionsPanel";
 import { TelemetryPanel } from "./TelemetryPanel";
 import { TopologyPanel } from "./TopologyPanel";
+import { WorkspaceShell } from "./WorkspaceShell";
 
 export function App() {
   const vm = useAtlasViewModel();
   return (
     <>
-      <DrawingFrame>
-        <AtlasHeader vm={vm} />
-        <div className="atlas-grid">
-          <InventoryPanel vm={vm} />
-          <TopologyPanel vm={vm} />
-          <RegionsPanel vm={vm} />
-          <IncidentsPanel vm={vm} />
-          <TelemetryPanel vm={vm} />
-          <JournalPanel vm={vm} />
-        </div>
-        <AtlasFooter />
-      </DrawingFrame>
+      <WorkspaceShell vm={vm}>
+        <DrawingFrame>
+          <AtlasHeader vm={vm} />
+          <div className="atlas-grid">
+            <InventoryPanel vm={vm} />
+            <TopologyPanel vm={vm} />
+            <RegionsPanel vm={vm} />
+            <IncidentsPanel vm={vm} />
+            <TelemetryPanel vm={vm} />
+            <JournalPanel vm={vm} />
+          </div>
+          <AtlasFooter />
+        </DrawingFrame>
+      </WorkspaceShell>
       <AtlasDialogs vm={vm} />
       <div
         className="notice-region"

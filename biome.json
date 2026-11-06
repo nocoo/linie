@@ -9,7 +9,7 @@
   "css": { "formatter": { "enabled": true } },
   "overrides": [
     {
-      "includes": ["src/styles/app.css"],
+      "includes": ["src/styles/app.css", "src/styles/shell.css"],
       "linter": { "rules": { "style": { "noDescendingSpecificity": "off" } } }
     }
   ]

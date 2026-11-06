@@ -1184,7 +1184,7 @@ button:disabled {
   line-height: 1.7;
   margin: 0 0 16px;
 }
-@media (min-width: 1800px) {
+@container atlas (min-width: 1800px) {
   .atlas {
     margin: 18px auto;
     width: calc(100% - 36px);
@@ -1272,7 +1272,7 @@ button:disabled {
     padding: 12px 0;
   }
 }
-@media (max-width: 1250px) {
+@container atlas (max-width: 1250px) {
   .brand-titles {
     gap: 14px;
   }
@@ -1389,7 +1389,7 @@ button:disabled {
     font-size: 11px;
   }
 }
-@media (max-width: 1150px) {
+@container atlas (max-width: 1150px) {
   .brand-titles {
     display: block;
   }
@@ -1486,7 +1486,7 @@ button:disabled {
     margin: 12px 0;
   }
 }
-@media (max-width: 700px) {
+@container atlas (max-width: 700px) {
   .atlas {
     margin: 10px;
     padding: 13px 10px 10px;

@@ -1,6 +1,6 @@
 # Linie
 
-A frontend template for a large-scale network operations platform. The visual reference is `~/Downloads/linie.jpeg`: a technical drawing with a warm paper background, teal ink, coordinate rulers, dense tables and six numbered panels. Preserve this identity rather than introducing a sidebar dashboard.
+A frontend template for a large-scale network operations platform. The visual reference is `~/Downloads/linie.jpeg`: a technical drawing with a warm paper background, teal ink, coordinate rulers, dense tables and six numbered panels. Preserve this identity inside the workspace shell. The sidebar starts expanded and can close; the right-hand operations companion starts closed and provides explicitly simulated, read-only local chat.
 
 ## Stack
 
