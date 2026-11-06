@@ -21,3 +21,16 @@ The maintained Caddy skill's OpenSSL path was not installed on this machine. Res
 Cloudflare's `cf deploy --dry-run` can automatically rewrite an unconfigured project. Read the current programmatic configuration and plugin types, create the explicit configuration first, and validate prebuilt output before a production upload.
 
 Chrome and curl trusted local HTTPS, but Playwright's Node-based API request client did not. Enabling Node's system-CA option alone did not resolve this machine's trust path. Passing the existing public `$(mkcert -CAROOT)/rootCA.pem` through `NODE_EXTRA_CA_CERTS` verified the full certificate chain without altering trust stores or disabling TLS verification. Document the exact working command rather than equating browser trust with Node request-client trust.
+
+## 2026-11-07 — v0.2.0 deployment verification
+
+- Source commit: `cda256b0279e1c3fc18c2c2bbe30aa367eeadb6d`.
+- Cloudflare Worker: `linie`; deployed through the pinned `cf` CLI using the production Build Output.
+- Cloudflare version ID: `63226e70-d20c-4265-9390-065671c8afc4`.
+- Public origin: `https://linie.hexly.ai`; homepage and anonymous `/api/live` returned HTTP 200. Health returned version `0.2.0`, `scope: worker-liveness`, `dataMode: simulation` and `Cache-Control: no-store`.
+- All 59 unit tests passed. Coverage: statements 99.57%, branches 99.20%, functions 100%, lines 100% across Models, ViewModels and Worker routing. Biome and TypeScript passed without warnings/errors.
+- All 26 desktop/mobile browser checks passed through local Caddy HTTPS and again against the public origin. TLS verification remained enabled.
+- Public HTML referenced the exact locally built JS/CSS files. SHA-256 matched: JS `042998205a4102421fb5a0fb5587203498a7049b185ca74cf5c6e12bbd03b798`; CSS `41e3d7a7c65fcf6ff6a15e3a03f613d12ef064db2a742d6a23551c50fab85bc4`.
+- The local Caddy mapping was synchronized in the workflow repository at `92cdbf9d`; only that mapping was changed. Existing certificates were reused.
+- Cloudflare's public DNS-over-HTTPS resolved the production domain to edge addresses. The machine's UDP DNS path still returned a negative cached answer during verification, while normal Chrome and curl HTTPS requests passed. No resolver, hosts-file or network-policy change was made.
+- No Git push, GitHub tag or Release was requested or performed. This repository has no GitHub CI workflow, so remote CI is not claimed. This verification log is a documentation-only commit after the deployed source commit above.
