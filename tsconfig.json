@@ -20,6 +20,7 @@
   "include": [
     "src",
     "worker",
+    "scripts",
     "e2e",
     "cloudflare.config.ts",
     "vite.config.ts",

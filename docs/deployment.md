@@ -8,7 +8,7 @@
 | Isolated browser-test endpoint | http://127.0.0.1:7064      | The running local dev server              |
 | Production                     | https://linie.hexly.ai     | Cloudflare Worker `linie` + static assets |
 
-Ports 17064 (E2E) and 27064 (BDD) are reserved for future isolated servers; the current browser tests use the running development server and do not start a background process. The 7064 allocation was checked against the active and versioned Caddyfiles and by binding all three ports. The nmem registry was unavailable in this session; the allocation is recorded in the two Caddyfiles and this repository instead.
+Port 17064 hosts the isolated production preview during GitHub CI browser tests; 27064 (BDD) remains reserved. Normal local browser tests use an already running Herdr-managed server and do not start a background process. The 7064 allocation was checked against the active and versioned Caddyfiles and by binding all three ports. The nmem registry was unavailable in this session; the allocation is recorded in the two Caddyfiles and this repository instead.
 
 ## Local HTTPS
 
@@ -42,13 +42,14 @@ npm run build
 npm run deploy:dry-run
 npm run test:e2e
 npm run deploy
+npm run verify:deployment
 ```
 
 `npm run deploy` repeats static/coverage checks, builds and deploys the exact prebuilt production output. It needs the already authenticated Cloudflare CLI profile; do not copy credentials into the repository. No database, KV namespace, AI binding, secret or remote development binding is provisioned. The custom domain is declared in configuration. Workers.dev and preview URLs are disabled.
 
 Build output lives in `.cloudflare/output/v0/`. Vite's Worker-aware preview is available through `npm run preview`; do not serve the old `dist/` directory.
 
-Verify the production origin and `/api/live` separately after deployment. A successful local build or upload is not proof that custom-domain DNS, TLS and routing have completed. Record the Worker version ID and source commit in the deployment log after verification. There is no GitHub CI/deployment workflow in this template yet; do not claim remote CI passed.
+Verify the production origin and `/api/live` separately after deployment. A successful local build or upload is not proof that custom-domain DNS, TLS and routing have completed. Record the Worker version ID and source commit in the deployment log after verification. The pinned `nocoo/base-ci` workflows and their activation requirements are described in [CI and continuous deployment](ci.md). Do not claim remote CI passed without an exact-SHA run result.
 
 ## Health contract
 

@@ -1,5 +1,11 @@
 # Retrospective
 
+## 2026-11-07 — base-ci integration boundaries
+
+The current provider revision `af9a2b3f82c367d6eb6def5c3583ac717e0868ad` supports cf directly. Use its maintained input contract, not the older Wrangler-only research snapshot. Production deployment must prove a completed main-push CI run before checking out source, and must not inherit credentials into test jobs.
+
+Local verification covers actionlint 1.7.12, shared-workflow input names, 75 unit/configuration tests, deployment dry-run and 26 browser checks against both local Caddy HTTPS and the production build preview. The temporary preview pane was task-owned; the normal development server remains separate. GitHub run/deployment evidence is pending authorization to push the local commits and configure production secrets. Do not describe workflow files as an activated deployment pipeline.
+
 ## 2026-11-07 — One sidebar control
 
 The workspace exposed both a sidebar-header close button and a toolbar toggle for the same action. Keep ownership in the persistent toolbar so opening and closing use one stable position. The regression test now requires exactly one sidebar control in both states and verifies keyboard reopening and focus retention.

@@ -47,6 +47,7 @@ npm run test:e2e       # Requires the local dev server to be running
 npm run format         # Apply Biome formatting and safe fixes
 npm run deploy:dry-run # Validate the Cloudflare deployment without uploading
 npm run deploy         # Authorized publication to linie.hexly.ai
+npm run verify:deployment # Check the public version and exact entry assets
 ```
 
 Inside Herdr, run the development server in the project's `dev server` tab rather than as a background process.
@@ -68,11 +69,17 @@ See [architecture and data semantics](docs/architecture.md) for the visual contr
 
 ## Verification
 
-The current version has 59 Model/ViewModel/Worker unit tests and 26 desktop/mobile browser checks covering main workflows, focus restoration, 360–2048px viewport reflow and automated WCAG A/AA checks on the atlas and registration dialog. Coverage excludes presentation and build configuration; browser checks verify assembled Views. Automated checks do not replace manual accessibility testing.
+The current version has 75 unit/configuration tests and 26 desktop/mobile browser checks covering main workflows, focus restoration, 360–2048px viewport reflow and automated WCAG A/AA checks on the atlas and registration dialog. Coverage excludes presentation and build configuration; browser checks verify assembled Views. Automated checks do not replace manual accessibility testing.
 
 There is no automatic pre-commit gate or L1 certification claim. Versioning is sourced from `package.json` for the sidebar, drawing footer and `/api/live`. See [deployment and version management](docs/deployment.md) and the [changelog](CHANGELOG.md).
 
 Production: **https://linie.hexly.ai** · Health: **https://linie.hexly.ai/api/live**. The health endpoint reports Worker liveness, not the health of simulated infrastructure.
+
+## CI/CD
+
+GitHub Actions definitions reuse `nocoo/base-ci` at an immutable commit. PRs and `main` pushes run quality, security, build, browser and workflow checks. A successful main-push CI run triggers a verified-source Cloudflare deployment followed by version and asset-hash verification. Production secrets are isolated from CI.
+
+The initial integration still needs authorized Git push and configuration of the GitHub `production` environment before it becomes operational. See [CI/CD setup and source verification](docs/ci.md).
 
 ## License
 

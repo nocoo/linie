@@ -1,0 +1,38 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  deploy:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    uses: nocoo/base-ci/.github/workflows/deploy-worker.yml@af9a2b3f82c367d6eb6def5c3583ac717e0868ad
+    with:
+      expected-workflow-path: .github/workflows/ci.yml
+      expected-workflow-name: CI
+      expected-branch: main
+      source-run-id: ${{ format('{0}', github.event.workflow_run.id) }}
+      source-sha: ${{ github.event.workflow_run.head_sha }}
+      allowed-source-events: push
+      require-fresh-main: true
+      package-manager: npm
+      runtime-version: "11.20.0"
+      node-version: "26.13.0"
+      install-policy: blocked
+      environment: production
+      deploy-cli: cf
+      cf-version: "1.0.0-beta.26"
+      build-command: npm run build
+      verify-command: npm run verify:deployment
+      verify-retries: 6
+      verify-retry-seconds: 10
