@@ -1,14 +1,13 @@
 import { Progress, SegmentedControl } from "@radix-ui/themes";
 import { Panel } from "../components/Panel";
-import { sampleTraffic, type TimeRange } from "../models/infrastructure";
+import type { TimeRange } from "../models/infrastructure";
 import type { AtlasViewModel } from "../viewmodels/useAtlasViewModel";
 
 export function TelemetryPanel({ vm }: { vm: AtlasViewModel }) {
-  const samples = sampleTraffic(vm.range, vm.revision);
-  const ingress = samples
+  const ingress = vm.traffic
     .map((sample) => `${sample.x},${110 - sample.ingress * 2}`)
     .join(" ");
-  const egress = samples
+  const egress = vm.traffic
     .map((sample) => `${sample.x},${110 - sample.egress * 2}`)
     .join(" ");
   const labels = {

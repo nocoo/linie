@@ -2,7 +2,6 @@ import { Button, Progress } from "@radix-ui/themes";
 import { ArrowUpRight } from "lucide-react";
 import { Panel } from "../components/Panel";
 import { Stamp } from "../components/Status";
-import { regions, summarizeFleet } from "../models/infrastructure";
 import type { AtlasViewModel } from "../viewmodels/useAtlasViewModel";
 
 export function RegionsPanel({ vm }: { vm: AtlasViewModel }) {
@@ -18,10 +17,8 @@ export function RegionsPanel({ vm }: { vm: AtlasViewModel }) {
         <span>Geo-distributed</span>
       </div>
       <div className="region-list">
-        {regions.map((region) => {
-          const summary = summarizeFleet(
-            vm.servers.filter((server) => server.region === region.id),
-          );
+        {vm.regionSummaries.map((region) => {
+          const { summary } = region;
           return (
             <article className="region-card" key={region.id}>
               <div className="region-card-header">
@@ -34,7 +31,11 @@ export function RegionsPanel({ vm }: { vm: AtlasViewModel }) {
                     vm.setQuery("");
                     vm.setStatus("all");
                     document.getElementById("inventory")?.scrollIntoView({
-                      behavior: "smooth",
+                      behavior: window.matchMedia(
+                        "(prefers-reduced-motion: reduce)",
+                      ).matches
+                        ? "instant"
+                        : "smooth",
                       block: "nearest",
                     });
                   }}

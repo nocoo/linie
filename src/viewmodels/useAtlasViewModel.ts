@@ -8,8 +8,10 @@ import {
   initialJournal,
   networkNodes,
   PAGE_SIZE,
+  regions,
   type ServerDraft,
   type StatusFilter,
+  sampleTraffic,
   summarizeFleet,
   type TimeRange,
   validateServer,
@@ -42,6 +44,20 @@ export function useAtlasViewModel() {
   const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const currentPage = Math.min(page, pageCount - 1);
   const summary = useMemo(() => summarizeFleet(servers), [servers]);
+  const regionSummaries = useMemo(
+    () =>
+      regions.map((region) => ({
+        ...region,
+        summary: summarizeFleet(
+          servers.filter((server) => server.region === region.id),
+        ),
+      })),
+    [servers],
+  );
+  const traffic = useMemo(
+    () => sampleTraffic(range, revision),
+    [range, revision],
+  );
 
   function record(action: string, detail: string) {
     setJournal((entries) =>
@@ -162,6 +178,8 @@ export function useAtlasViewModel() {
     revision,
     sampledAt,
     summary,
+    regionSummaries,
+    traffic,
     page: currentPage,
     pageCount,
     sortDescending,

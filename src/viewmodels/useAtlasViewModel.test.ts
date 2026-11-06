@@ -42,6 +42,9 @@ describe("atlas ViewModel", () => {
     });
     expect(result.current.page).toBe(0);
     expect(result.current.filteredCount).toBe(312);
+    expect(result.current.summary.total).toBe(1248);
+    expect(result.current.regionSummaries).toHaveLength(4);
+    expect(result.current.regionSummaries[0]?.summary.total).toBe(312);
     act(() => {
       result.current.setPage(3);
       result.current.setStatus("degraded");
@@ -121,6 +124,7 @@ describe("atlas ViewModel", () => {
     expect(result.current.servers[0]?.status).toBe("maintenance");
     expect(result.current.summary.attention).toBe(19);
     expect(result.current.summary.online).toBe(1223);
+    expect(result.current.regionSummaries[0]?.summary.attention).toBe(6);
     expect(result.current.journal[0]?.action).toBe("Maintenance enabled");
     act(() => result.current.toggleMaintenance("srv-0001"));
     expect(result.current.servers[0]?.status).toBe("online");
@@ -159,6 +163,7 @@ describe("atlas ViewModel", () => {
     });
     expect(result.current.range).toBe("24h");
     expect(result.current.revision).toBe(25);
+    expect(result.current.traffic).toHaveLength(49);
     expect(result.current.summary.total).toBe(1249);
     expect(result.current.journal).toHaveLength(20);
     expect(new Set(result.current.journal.map((entry) => entry.id)).size).toBe(
