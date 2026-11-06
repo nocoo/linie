@@ -79,7 +79,7 @@ Production: **https://linie.hexly.ai** · Health: **https://linie.hexly.ai/api/l
 
 GitHub Actions definitions reuse `nocoo/base-ci` at an immutable commit. PRs and `main` pushes run quality, security, build, browser and workflow checks. A successful main-push CI run triggers a verified-source Cloudflare deployment followed by version and asset-hash verification. Production secrets are isolated from CI.
 
-The initial integration still needs authorized Git push and configuration of the GitHub `production` environment before it becomes operational. See [CI/CD setup and source verification](docs/ci.md).
+Production credentials are configured in the GitHub `production` environment. Exact-run CI and deployment evidence is recorded in `Retrospective.md`. See [CI/CD setup and source verification](docs/ci.md).
 
 ## License
 

@@ -1,11 +1,12 @@
 # Changelog
 
-## Unreleased
+## v0.3.0 — 2026-11-07
 
 - Integrate immutable `nocoo/base-ci` quality, security, browser, workflow-lint and cf deployment workflows.
 - Test built assets in an isolated CI preview and verify deployed health, version, HTML references and JS/CSS hashes.
-
 - Keep a single sidebar toggle in the workspace toolbar; remove the duplicate sidebar close button and verify pointer/keyboard focus behavior.
+
+The baseline is v0.2.0 at `cda256b`. The accumulated changes exceed 500 lines, so the minor version advances to v0.3.0.
 
 ## v0.2.0 — 2026-11-07
 

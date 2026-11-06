@@ -46,6 +46,6 @@ GitHub settings: https://github.com/nocoo/linie/settings/environments
 
 ## Activation and evidence
 
-At initial local integration, GitHub contained only the repository's initial commit and had no secrets or environments. The workflow definitions are not operational until the application/workflow commits are pushed and production credentials are configured. Those remote writes require the owner's confirmation.
+The owner configured both required secrets in `production` and authorized the first application/workflow push on 2026-11-07. The environment has no additional reviewer or branch protection rule; the workflow's source and branch checks remain mandatory.
 
-After authorization, inspect the `CI` and `Deploy` runs for the exact pushed SHA. Record both run URLs, the deployed Worker version and the production verification result in `Retrospective.md`. Local actionlint, unit tests and preview acceptance do not establish that GitHub CI or CD ran successfully. No branch-protection rules or required status checks are configured by this change.
+Inspect the `CI` and `Deploy` runs for the exact pushed SHA. Record both run URLs, the deployed Worker version and the production verification result in `Retrospective.md`. Local actionlint, unit tests and preview acceptance do not establish that GitHub CI or CD ran successfully. No branch-protection rules or required status checks are configured by this change.
