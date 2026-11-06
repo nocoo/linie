@@ -69,7 +69,7 @@ See [architecture and data semantics](docs/architecture.md) for the visual contr
 
 ## Verification
 
-The current version has 75 unit/configuration tests and 26 desktop/mobile browser checks covering main workflows, focus restoration, 360–2048px viewport reflow and automated WCAG A/AA checks on the atlas and registration dialog. Coverage excludes presentation and build configuration; browser checks verify assembled Views. Automated checks do not replace manual accessibility testing.
+The current version has 76 unit/configuration tests and 26 desktop/mobile browser checks covering main workflows, focus restoration, 360–2048px viewport reflow and automated WCAG A/AA checks on the atlas and registration dialog. Coverage excludes presentation and build configuration; browser checks verify assembled Views. Automated checks do not replace manual accessibility testing.
 
 There is no automatic pre-commit gate or L1 certification claim. Versioning is sourced from `package.json` for the sidebar, drawing footer and `/api/live`. See [deployment and version management](docs/deployment.md) and the [changelog](CHANGELOG.md).
 

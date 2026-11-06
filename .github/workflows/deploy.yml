@@ -17,6 +17,9 @@ jobs:
       github.event.workflow_run.event == 'push' &&
       github.event.workflow_run.head_repository.full_name == github.repository
     uses: nocoo/base-ci/.github/workflows/deploy-worker.yml@af9a2b3f82c367d6eb6def5c3583ac717e0868ad
+    secrets:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     with:
       expected-workflow-path: .github/workflows/ci.yml
       expected-workflow-name: CI

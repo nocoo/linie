@@ -40,7 +40,7 @@ Create the exact GitHub environment `production` in `nocoo/linie`. Restrict depl
 | `CLOUDFLARE_API_TOKEN`  | A dedicated CI API token with the necessary Workers deployment and custom-domain permissions for the target account/zone |
 | `CLOUDFLARE_ACCOUNT_ID` | The account ID already declared in `cloudflare.config.ts`                                                                |
 
-The called deployment job selects this environment and reads only the two named secrets. The caller does not use `secrets: inherit`. Never commit a token, paste it into a command argument/history, or copy the local OAuth profile into GitHub. Set token values through GitHub's secret UI or an interactive `gh secret set` prompt.
+The caller must explicitly pass both named secrets even when their values exist only in the environment. The called deployment job selects `production`, whose values take precedence. Omitting the caller mapping resolves the secrets to empty strings. The caller does not use `secrets: inherit`. Never commit a token, paste it into a command argument/history, or copy the local OAuth profile into GitHub. Set token values through GitHub's secret UI or an interactive `gh secret set` prompt.
 
 GitHub settings: https://github.com/nocoo/linie/settings/environments
 

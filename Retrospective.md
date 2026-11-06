@@ -1,5 +1,13 @@
 # Retrospective
 
+## 2026-11-07 — Explicit reusable-workflow secret propagation
+
+CI run `42314053437` passed for `e5557c9`, including 75 unit/configuration tests, 26 Chromium browser tests, Gitleaks, OSV, build dry-run and workflow lint. Deployment run `42314220024` proved the same source and rebuilt it, but correctly stopped because both credential values were empty. The `production` environment and both secret names had been confirmed; the caller omitted explicit secret mappings.
+
+GitHub's current reusable-workflow documentation requires the caller to pass a secret by name even when it exists only in the environment. The callee's `environment` setting does not replace that permission boundary. Added only the two named mappings and a regression test, without broad secret inheritance, changing stored credentials or bypassing source verification. Reference: https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows#using-inputs-and-secrets-in-a-reusable-workflow.
+
+The first Git push returned a server error. Checking the remote ref showed no update; a single retry through the machine's explicitly configured HTTPS proxy succeeded. Always inspect the remote before retrying an uncertain push.
+
 ## 2026-11-07 — base-ci integration boundaries
 
 The current provider revision `af9a2b3f82c367d6eb6def5c3583ac717e0868ad` supports cf directly. Use its maintained input contract, not the older Wrangler-only research snapshot. Production deployment must prove a completed main-push CI run before checking out source, and must not inherit credentials into test jobs.
