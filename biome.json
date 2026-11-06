@@ -6,5 +6,11 @@
   "linter": { "enabled": true, "rules": { "preset": "recommended" } },
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "javascript": { "formatter": { "quoteStyle": "double" } },
-  "css": { "formatter": { "enabled": true } }
+  "css": { "formatter": { "enabled": true } },
+  "overrides": [
+    {
+      "includes": ["src/styles/app.css"],
+      "linter": { "rules": { "style": { "noDescendingSpecificity": "off" } } }
+    }
+  ]
 }

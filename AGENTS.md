@@ -13,7 +13,12 @@ A frontend template for a large-scale network operations platform. The visual re
 ## Commands
 
 - `npm run dev`: local Vite server on `127.0.0.1:5173`.
-- `npm run check`: Biome (warnings rejected) and TypeScript.
+- `npm run check`: Biome (warnings rejected), strict TypeScript and Model/ViewModel coverage tests.
+- `npm run test`: unit tests.
+- `npm run test:coverage`: unit tests with statements, branches, functions and lines each enforced at 95%; pure Views and build configuration are excluded.
+- `npm run test:e2e`: Chrome desktop/mobile tests against the running dev server; requires Google Chrome locally.
 - `npm run build`: TypeScript and production Vite build.
+
+No automatic pre-commit gate or L1 certification is claimed. `docs/architecture.md` describes data semantics and design decisions. `package.json` is the authoritative version, injected by Vite.
 
 Use a Herdr tab named `dev server` for the development server. Do not start background servers. Make verified atomic Conventional Commits; stage explicit paths and do not push unless requested.

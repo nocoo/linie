@@ -1,21 +1,55 @@
-import { Badge } from "@radix-ui/themes";
-import { Box } from "lucide-react";
+import { IconButton } from "@radix-ui/themes";
+import { CheckCircle2, X } from "lucide-react";
+import { DrawingFrame } from "../components/DrawingFrame";
+import { useAtlasViewModel } from "../viewmodels/useAtlasViewModel";
+import { AtlasDialogs } from "./AtlasDialogs";
+import { AtlasFooter } from "./AtlasFooter";
+import { AtlasHeader } from "./AtlasHeader";
+import { IncidentsPanel } from "./IncidentsPanel";
+import { InventoryPanel } from "./InventoryPanel";
+import { JournalPanel } from "./JournalPanel";
+import { RegionsPanel } from "./RegionsPanel";
+import { TelemetryPanel } from "./TelemetryPanel";
+import { TopologyPanel } from "./TopologyPanel";
 
 export function App() {
+  const vm = useAtlasViewModel();
   return (
-    <main className="atlas">
-      <header className="brand">
-        <Box size={48} strokeWidth={1} aria-hidden="true" />
-        <div>
-          <h1>LINIE</h1>
-          <p>NETWORK OPERATIONS / INFRASTRUCTURE ATLAS</p>
+    <>
+      <DrawingFrame>
+        <AtlasHeader vm={vm} />
+        <div className="atlas-grid">
+          <InventoryPanel vm={vm} />
+          <TopologyPanel vm={vm} />
+          <RegionsPanel vm={vm} />
+          <IncidentsPanel vm={vm} />
+          <TelemetryPanel vm={vm} />
+          <JournalPanel vm={vm} />
         </div>
-      </header>
-      <section className="welcome">
-        <Badge variant="outline">LOCAL DEMO</Badge>
-        <h2>A clear view of your infrastructure.</h2>
-        <p>React · TypeScript · Radix Themes · Vite · MVVM</p>
-      </section>
-    </main>
+        <AtlasFooter />
+      </DrawingFrame>
+      <AtlasDialogs vm={vm} />
+      <div
+        className="notice-region"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {vm.notice && (
+          <div className="notice">
+            <CheckCircle2 size={16} />
+            <span>{vm.notice}</span>
+            <IconButton
+              size="1"
+              variant="ghost"
+              aria-label="Dismiss notification"
+              onClick={() => vm.setNotice("")}
+            >
+              <X size={14} />
+            </IconButton>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
