@@ -5,13 +5,17 @@ test.beforeEach(async ({ page }) => {
   await page.goto("/");
 });
 
-test("opens the sidebar by default, navigates and restores it after closing", async ({
+test("uses one persistent sidebar toggle for pointer and keyboard", async ({
   page,
 }) => {
   const sidebar = page.getByRole("complementary", {
     name: "Workspace sidebar",
   });
   await expect(sidebar).toBeVisible();
+  const toggle = page.getByRole("button", { name: /sidebar/i });
+  await expect(toggle).toHaveCount(1);
+  await expect(toggle).toHaveAccessibleName("Close sidebar");
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
   await expect(
     page.getByRole("complementary", { name: "Operations assistant" }),
   ).toHaveCount(0);
@@ -20,15 +24,17 @@ test("opens the sidebar by default, navigates and restores it after closing", as
     "aria-current",
     "location",
   );
-  await sidebar
-    .getByRole("button", { name: "Close sidebar", exact: true })
-    .click();
+  await toggle.click();
   await expect(sidebar).toHaveCount(0);
-  await expect(
-    page.getByRole("button", { name: "Open sidebar", exact: true }),
-  ).toBeFocused();
-  await page.getByRole("button", { name: "Open sidebar", exact: true }).click();
+  await expect(toggle).toHaveCount(1);
+  await expect(toggle).toHaveAccessibleName("Open sidebar");
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(toggle).toBeFocused();
+  await toggle.press("Enter");
   await expect(sidebar).toBeVisible();
+  await expect(toggle).toHaveCount(1);
+  await expect(toggle).toHaveAccessibleName("Close sidebar");
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
 });
 
 test("simulates a conversation, keeps it on close, and can clear it", async ({

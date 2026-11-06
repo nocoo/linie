@@ -19,7 +19,6 @@ export function WorkspaceShell({
     servers: vm.servers,
     incidents: vm.incidents,
   });
-  const sidebarToggle = useRef<HTMLButtonElement>(null);
   const chatToggle = useRef<HTMLButtonElement>(null);
   const closeChat = useCallback(() => {
     shell.setChatOpen(false);
@@ -32,26 +31,16 @@ export function WorkspaceShell({
       data-sidebar={shell.sidebarOpen ? "open" : "closed"}
       data-chat={shell.chatOpen ? "open" : "closed"}
     >
-      {shell.sidebarOpen && (
-        <Sidebar
-          vm={vm}
-          shell={shell}
-          onClose={() => {
-            shell.setSidebarOpen(false);
-            sidebarToggle.current?.focus();
-          }}
-        />
-      )}
+      {shell.sidebarOpen && <Sidebar vm={vm} shell={shell} />}
       <div className="workspace-main">
         <header className="shell-toolbar">
           <Tooltip
             content={shell.sidebarOpen ? "Close sidebar" : "Open sidebar"}
           >
             <IconButton
-              ref={sidebarToggle}
               size="1"
               variant="ghost"
-              aria-label={shell.sidebarOpen ? "Toggle sidebar" : "Open sidebar"}
+              aria-label={shell.sidebarOpen ? "Close sidebar" : "Open sidebar"}
               aria-expanded={shell.sidebarOpen}
               aria-controls="workspace-sidebar"
               onClick={() => shell.setSidebarOpen(!shell.sidebarOpen)}

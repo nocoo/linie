@@ -70,10 +70,6 @@
   font: 700 22px / 1 var(--mono);
   letter-spacing: 1px;
 }
-.sidebar-brand > .rt-IconButton {
-  margin-left: auto;
-  flex-shrink: 0;
-}
 .version-pill.rt-Badge {
   font: 10px / 1 var(--mono);
   padding: 3px 4px;

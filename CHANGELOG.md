@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Keep a single sidebar toggle in the workspace toolbar; remove the duplicate sidebar close button and verify pointer/keyboard focus behavior.
+
 ## v0.2.0 — 2026-11-07
 
 - Add a default-open, closable workspace sidebar with section navigation, quick actions and a manifest-derived version pill.

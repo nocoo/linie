@@ -1,4 +1,4 @@
-import { Badge, Button, IconButton, Tooltip } from "@radix-ui/themes";
+import { Badge, Button } from "@radix-ui/themes";
 import {
   Activity,
   ArrowDownToLine,
@@ -8,7 +8,6 @@ import {
   LayoutDashboard,
   ListChecks,
   Network,
-  PanelLeftClose,
   Plus,
   Server,
   UserRound,
@@ -29,11 +28,9 @@ const navigation = [
 export function Sidebar({
   vm,
   shell,
-  onClose,
 }: {
   vm: AtlasViewModel;
   shell: ShellViewModel;
-  onClose: () => void;
 }) {
   return (
     <aside
@@ -47,16 +44,6 @@ export function Sidebar({
         <Badge className="version-pill" variant="outline">
           v{__APP_VERSION__}
         </Badge>
-        <Tooltip content="Close sidebar">
-          <IconButton
-            variant="ghost"
-            size="1"
-            aria-label="Close sidebar"
-            onClick={onClose}
-          >
-            <PanelLeftClose size={16} />
-          </IconButton>
-        </Tooltip>
       </div>
       <div className="sidebar-workspace">
         <span className="sidebar-eyebrow">WORKSPACE / 01</span>
