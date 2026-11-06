@@ -1,0 +1,42 @@
+:root {
+  --paper: #f3f5ef;
+  --surface: #fafbf7;
+  --wash: #e7eeea;
+  --ink: #21474b;
+  --muted: #607679;
+  --rule: #8e9f9e;
+  --rule-soft: #c5ceca;
+  --accent: #087e72;
+  --accent-wash: #e0eee7;
+  --warning: #986411;
+  --warning-wash: #f6ecd7;
+  --danger: #ac4136;
+  --danger-wash: #f7e8e2;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --type-small: 11px;
+  --type-body: 12px;
+  --type-label: 13px;
+  --type-title: 15px;
+}
+
+.radix-themes {
+  --default-font-family: var(--sans);
+  --code-font-family: var(--mono);
+  --heading-font-family: var(--mono);
+  --color-background: var(--paper);
+  --color-panel-solid: var(--surface);
+  --color-panel-translucent: var(--surface);
+  --accent-9: var(--accent);
+  --accent-10: #056b62;
+  --accent-11: #096f65;
+  --accent-12: var(--ink);
+  --focus-8: var(--accent);
+  color: var(--ink);
+}
