@@ -1,5 +1,16 @@
 # Retrospective
 
+## 2026-11-07 — First successful automatic v0.3.0 deployment
+
+- Proven source: `6345ec37286dd9b34f161627f543d306c4103b0a`.
+- CI: https://github.com/nocoo/linie/actions/runs/42315130501 — successful, including 76 unit/configuration tests, 26 isolated Chromium browser checks, Gitleaks, OSV, workflow lint and Cloudflare build validation. Coverage: statements 99.62%, branches 99.23%, functions 100%, lines 100%.
+- Automatic deployment: https://github.com/nocoo/linie/actions/runs/42315282752 — successful. Source proof, explicit production-secret propagation, fresh-main check, cf upload and post-deploy verification all passed.
+- Cloudflare version ID: `d017a96d-036b-4ab4-8ac7-0c6a5fd702d7`.
+- Public `/api/live` returned HTTP 200, version `0.3.0` and `Cache-Control: no-store`. All 26 browser checks passed again against `https://linie.hexly.ai` after deployment.
+- The local and runner-built entry assets matched production: JS SHA-256 `f98f3b000abddedc7e5438e20863707ee2da5f7384255de19928ac2342f257a3`; CSS SHA-256 `675c32200ea6b091107923f647a2fa7ab06e1c14cb9f5a20724dcd5a5c8259c5`.
+- The owner supplied environment secrets. No stored secret was read back, changed or copied into source. No manual Cloudflare deployment, Git tag or GitHub Release was used for this publication.
+- This record documents the first successful automatic release; subsequent documentation commits run through the same pipeline without changing the application version.
+
 ## 2026-11-07 — Explicit reusable-workflow secret propagation
 
 CI run `42314053437` passed for `e5557c9`, including 75 unit/configuration tests, 26 Chromium browser tests, Gitleaks, OSV, build dry-run and workflow lint. Deployment run `42314220024` proved the same source and rebuilt it, but correctly stopped because both credential values were empty. The `production` environment and both secret names had been confirmed; the caller omitted explicit secret mappings.
