@@ -1,5 +1,26 @@
 # Retrospective
 
+## 2026-11-07 - Identity adoption and Hexly site entry
+
+- Source commit: `959255d1425ef46116164c702bc6d6782be7d7ef`; the application identity change is `21dc59c`.
+- CI run: https://github.com/nocoo/linie/actions/runs/42328435959 - successful for that exact source SHA.
+- Deployment run: https://github.com/nocoo/linie/actions/runs/42328558624 - successful, custom domain `linie.hexly.ai`.
+- Cloudflare version ID: `a157e2a7-31a1-408b-a0c8-0c6219dd1473`.
+- Public `/api/live` returned HTTP 200, version `0.3.1`, `Cache-Control: no-store` and no body on HEAD.
+- The deployed entry assets matched the local production build: JS SHA-256 `1d6ad78cc144603de97bfa2f56677846b2edefd25d6b256a2063eb926b83e8ec`, CSS SHA-256 `6dfcf81e133c9f6de4d9190098c8a7ba279fc9617f63f1607d8524ac5342382d`.
+- All 30 desktop and mobile browser checks passed against the public origin, including the approved brand mark and the Hexly entry.
+- The artwork was copied byte for byte from the Hexly study `artwork/logo-family/linie/2026-11-07-01/finishing/01`. No pixel was regenerated or edited; `assets/brand/README.md` records the SHA-256 values and the source provenance.
+- The Hexly entry points at the canonical catalogue route `https://hexly.ai/projects/linie` as a real anchor with `target="_blank"` and `rel="noopener noreferrer"`.
+- No Git tag or GitHub Release was created, and no Cloudflare credential, certificate or trust store was touched.
+
+An icon-only link needs a text alternative, not only an SVG: the accessible name
+lives in a visually hidden label inside the anchor, and the tooltip stays a short
+description. The Hexly entry and the companion control now share one action
+container, because the old rule that pushed the last button to the right with
+`margin-left: auto` would have split the pair at narrower widths. Keep the
+product mark a plain transparent image next to the wordmark, and give it an
+empty alternative instead of a tile, a glow or a mask.
+
 ## 2026-11-07 — README review must distinguish browser lanes
 
 Independent review of the bilingual README caught a missing clean-CI Chromium
