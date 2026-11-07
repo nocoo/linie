@@ -90,3 +90,38 @@ test("keeps the docked and overlay layouts accessible", async ({ page }) => {
     ),
   ).toBe(true);
 });
+
+test("links the Hexly project detail from the workspace toolbar", async ({
+  page,
+}) => {
+  const link = page.getByRole("link", {
+    name: "Linie on hexly.ai (opens in a new tab)",
+  });
+  await expect(link).toHaveCount(1);
+  await expect(link).toHaveAttribute("href", "https://hexly.ai/projects/linie");
+  await expect(link).toHaveAttribute("target", "_blank");
+  await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  await expect(link).toBeVisible();
+  await link.focus();
+  await expect(link).toBeFocused();
+  await expect(page.getByRole("tooltip")).toHaveText("Linie on hexly.ai");
+  const companion = page.getByRole("button", {
+    name: "Open companion",
+    exact: true,
+  });
+  await expect(companion).toHaveCount(1);
+  const placement = await page.evaluate(() => {
+    const link = document.querySelector(
+      'a[href="https://hexly.ai/projects/linie"]',
+    );
+    const companionControl = document.querySelector(
+      '[aria-controls="operations-chat"]',
+    );
+    if (!link || !companionControl) return null;
+    return {
+      sameGroup: link.parentElement === companionControl.parentElement,
+      immediate: link.nextElementSibling === companionControl,
+    };
+  });
+  expect(placement).toEqual({ sameGroup: true, immediate: true });
+});

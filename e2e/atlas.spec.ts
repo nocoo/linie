@@ -23,6 +23,26 @@ test("renders the engineering atlas without runtime errors or horizontal overflo
   expect(errors).toEqual([]);
 });
 
+test("shows the approved brand mark and favicon set", async ({ page }) => {
+  const headerMark = page.locator("header.masthead img.brand-mark");
+  await expect(headerMark).toHaveAttribute("src", "/brand-mark.png");
+  await expect(headerMark).toHaveAttribute("alt", "");
+  await expect(headerMark).toHaveAttribute("aria-hidden", "true");
+  const sidebarMark = page.locator(".sidebar-brand img.sidebar-mark");
+  await expect(sidebarMark).toHaveAttribute("src", "/brand-mark.png");
+  await expect(sidebarMark).toHaveAttribute("alt", "");
+  await expect(sidebarMark).toHaveAttribute("aria-hidden", "true");
+  await expect(page.locator('link[rel="icon"]')).toHaveAttribute(
+    "href",
+    "/favicon-32.png",
+  );
+  await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute(
+    "href",
+    "/apple-touch-icon.png",
+  );
+  await expect(page.locator('link[href="/favicon.svg"]')).toHaveCount(0);
+});
+
 test("filters inventory, handles empty results and paginates", async ({
   page,
 }) => {

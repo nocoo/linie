@@ -2,7 +2,6 @@ import { Badge, Button } from "@radix-ui/themes";
 import {
   Activity,
   ArrowDownToLine,
-  Box,
   CircleAlert,
   Globe2,
   LayoutDashboard,
@@ -39,7 +38,14 @@ export function Sidebar({
       aria-label="Workspace sidebar"
     >
       <div className="sidebar-brand">
-        <Box size={25} strokeWidth={1.2} />
+        <img
+          className="sidebar-mark"
+          src="/brand-mark.png"
+          alt=""
+          aria-hidden="true"
+          width={25}
+          height={25}
+        />
         <strong>LINIE</strong>
         <Badge className="version-pill" variant="outline">
           v{__APP_VERSION__}

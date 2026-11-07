@@ -1,5 +1,5 @@
 import { Button, IconButton, Tooltip } from "@radix-ui/themes";
-import { ArrowDownToLine, Box, Plus, RotateCw } from "lucide-react";
+import { ArrowDownToLine, Plus, RotateCw } from "lucide-react";
 import type { AtlasViewModel } from "../viewmodels/useAtlasViewModel";
 
 export function AtlasHeader({ vm }: { vm: AtlasViewModel }) {
@@ -7,11 +7,13 @@ export function AtlasHeader({ vm }: { vm: AtlasViewModel }) {
     <>
       <header className="masthead">
         <div className="brand">
-          <Box
+          <img
             className="brand-mark"
-            size={48}
-            strokeWidth={1}
+            src="/brand-mark.png"
+            alt=""
             aria-hidden="true"
+            width={48}
+            height={48}
           />
           <div>
             <div className="brand-titles">

@@ -1,4 +1,4 @@
-import { Button, IconButton, Tooltip } from "@radix-ui/themes";
+import { Button, IconButton, Tooltip, VisuallyHidden } from "@radix-ui/themes";
 import { MessageSquare, PanelLeft } from "lucide-react";
 import { type ReactNode, useCallback, useRef } from "react";
 import type { AtlasViewModel } from "../viewmodels/useAtlasViewModel";
@@ -54,17 +54,49 @@ export function WorkspaceShell({
             <span>Global infrastructure</span>
           </div>
           <span className="shell-demo">SIMULATION MODE</span>
-          <Button
-            ref={chatToggle}
-            size="1"
-            variant={shell.chatOpen ? "solid" : "outline"}
-            aria-expanded={shell.chatOpen}
-            aria-controls="operations-chat"
-            onClick={() => shell.setChatOpen(!shell.chatOpen)}
-          >
-            <MessageSquare size={13} />
-            {shell.chatOpen ? "Hide companion" : "Open companion"}
-          </Button>
+          <div className="shell-actions">
+            <Tooltip content="Linie on hexly.ai">
+              <IconButton asChild size="1" variant="ghost">
+                <a
+                  className="shell-hexly-link"
+                  href="https://hexly.ai/projects/linie"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    focusable="false"
+                    pointerEvents="none"
+                  >
+                    <path d="m12 2 8.66 5v10L12 22l-8.66-5V7Z" />
+                    <path d="M12 2v20M3.34 7l17.32 10m0-10L3.34 17" />
+                  </svg>
+                  <VisuallyHidden>
+                    Linie on hexly.ai (opens in a new tab)
+                  </VisuallyHidden>
+                </a>
+              </IconButton>
+            </Tooltip>
+            <Button
+              ref={chatToggle}
+              size="1"
+              variant={shell.chatOpen ? "solid" : "outline"}
+              aria-expanded={shell.chatOpen}
+              aria-controls="operations-chat"
+              onClick={() => shell.setChatOpen(!shell.chatOpen)}
+            >
+              <MessageSquare size={13} />
+              {shell.chatOpen ? "Hide companion" : "Open companion"}
+            </Button>
+          </div>
         </header>
         <div className="atlas-viewport">{children}</div>
       </div>
