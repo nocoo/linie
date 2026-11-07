@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="../logo.png" alt="Linie" width="180" />
+</p>
 <h1 align="center">Linie</h1>
 <p align="center">A frontend template that turns an engineering verification drawing into a network operations console, with a simulated fleet and a read-only companion.</p>
 <p align="center"><a href="https://linie.hexly.ai">Website</a> · <a href="../README.md">简体中文</a></p>

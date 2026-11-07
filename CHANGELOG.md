@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.3.1 - 2026-11-07
+
+- Adopt the approved Linie identity artwork as the product mark in the atlas header and the workspace sidebar, replacing the Lucide cube marks.
+- Replace the authored SVG favicon with the approved PNG favicon set and apple touch icon.
+- Add the Hexly project-detail link to the workspace toolbar with the canonical catalogue route, a real anchor target, an accessible name and a tooltip.
+- Publish the approved logo in the Chinese and English README headers and record the brand asset manifest with SHA-256 values and source provenance.
+
+The baseline is v0.3.0 at `518c554`. This is a patch identity and site-entry change.
+
 ## v0.3.0 — 2026-11-07
 
 - Integrate immutable `nocoo/base-ci` quality, security, browser, workflow-lint and cf deployment workflows.

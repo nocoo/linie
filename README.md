@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="logo.png" alt="Linie" width="180" />
+</p>
 <h1 align="center">Linie</h1>
 <p align="center">把工程校核图做成网络运维控制台的前端模板，自带模拟主机清单与只读运维助手。</p>
 <p align="center"><a href="https://linie.hexly.ai">站点</a> · <a href="docs/README.en.md">English</a></p>
