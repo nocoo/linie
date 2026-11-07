@@ -6,7 +6,7 @@
 
 Linie is a working frontend template for starting a large-scale network operations console. It converts a single engineering verification drawing into an interface: warm paper, teal ink, coordinate rulers, numbered panels and a drawing title block, filled with one deterministic reference data set — 1,248 hosts, 4 regions, 9 topology components, 3 incidents and 4 journal entries.
 
-It is a template, not a monitoring product. There is no backend, no credential and no connection to a real system. Changes last for the current browser session only; reloading restores the reference data, while resampling telemetry keeps in-session edits. Interface copy is English-only today.
+It is a template, not a monitoring product. There is no real infrastructure-management backend, no infrastructure credential and no connection to a real system. Changes last for the current browser session only; reloading restores the reference data, while resampling telemetry keeps in-session edits. Interface copy is English-only today.
 
 ![The Linie infrastructure atlas](preview.png)
 
@@ -101,7 +101,7 @@ npm run test:e2e       # Playwright desktop and mobile journeys
 npm run check          # lint + typecheck + coverage tests
 ```
 
-`npm run test:e2e` needs an installed Chrome and an already running server: start `npm run dev` as above, then tests target `http://127.0.0.1:7064` unless `PLAYWRIGHT_BASE_URL` points elsewhere. With `CI=true`, Playwright builds the app and starts its own isolated preview on `127.0.0.1:17064` instead of reusing a running server. For local HTTPS acceptance:
+`npm run test:e2e` needs an installed Chrome and an already running server: start `npm run dev` as above, then tests target `http://127.0.0.1:7064` unless `PLAYWRIGHT_BASE_URL` points elsewhere. With `CI=true`, Playwright builds the app and starts its own isolated preview on `127.0.0.1:17064` instead of reusing a running server. In a fresh CI environment, first run `npx playwright install --with-deps chromium` to install Playwright's full Chromium and its runtime dependencies. For local HTTPS acceptance:
 
 ```sh
 NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem" \

@@ -6,7 +6,7 @@
 
 Linie 是一套能直接跑起来的前端模板，用来起步做大型网络运维（Network Operations）控制台。它把一张工程校核图改造成操作界面：暖色纸面、青墨线条、坐标标尺、编号面板和图纸标题栏，里面装着一套确定性生成的参考数据——1,248 台主机、4 个区域、9 个拓扑组件、3 条事件和 4 条运维日志。
 
-它是模板，不是监控产品：没有后端、没有凭据，也不连接任何真实系统。改动只存在于当前浏览器会话，刷新即恢复参考数据；重新采样流量不会丢掉会话内的修改。界面文案目前只有英文。
+它是模板，不是监控产品：没有真实基础设施管理后端、没有基础设施凭据，也不连接任何真实系统。改动只存在于当前浏览器会话，刷新即恢复参考数据；重新采样流量不会丢掉会话内的修改。界面文案目前只有英文。
 
 ![Linie 基础设施图谱](docs/preview.png)
 
@@ -101,7 +101,7 @@ npm run test:e2e       # Playwright 桌面与手机流程
 npm run check          # lint + typecheck + 覆盖率测试
 ```
 
-`npm run test:e2e` 需要已安装 Chrome，并且本地已经有一个运行中的服务：先按上面的方式 `npm run dev`，默认访问 `http://127.0.0.1:7064`，也可以用 `PLAYWRIGHT_BASE_URL` 指向其他来源。设置 `CI=true` 时 Playwright 会自己构建，并在 `127.0.0.1:17064` 启动隔离预览，不复用已在运行的服务。走本机 HTTPS 验收时：
+`npm run test:e2e` 需要已安装 Chrome，并且本地已经有一个运行中的服务：先按上面的方式 `npm run dev`，默认访问 `http://127.0.0.1:7064`，也可以用 `PLAYWRIGHT_BASE_URL` 指向其他来源。设置 `CI=true` 时 Playwright 会自己构建，并在 `127.0.0.1:17064` 启动隔离预览，不复用已在运行的服务。全新 CI 环境需要先运行 `npx playwright install --with-deps chromium`，安装 Playwright 管理的完整 Chromium 与运行依赖。走本机 HTTPS 验收时：
 
 ```sh
 NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem" \

@@ -1,5 +1,15 @@
 # Retrospective
 
+## 2026-11-07 — README review must distinguish browser lanes
+
+Independent review of the bilingual README caught a missing clean-CI Chromium
+installation prerequisite and an overbroad claim that there was no backend.
+Both language versions now distinguish local Chrome from Playwright-managed
+Chromium and limit the backend statement to real infrastructure management;
+the Worker still owns the health endpoint. These were corrected before push.
+When documenting multiple execution modes, check each mode's prerequisites
+against its configuration instead of applying the local setup to CI.
+
 ## 2026-11-07 — First successful automatic v0.3.0 deployment
 
 - Proven source: `6345ec37286dd9b34f161627f543d306c4103b0a`.
