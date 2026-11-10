@@ -1,3 +1,5 @@
+# CI slot standard v1 (nocoo/base-ci docs/slots.md): impl S1, S2, S3, G1, G2, B1, L1, L3, Z1 via quality.yml;
+# na L1.5, L2, P1 in slot-status. nocoo/base-ci v2026.12: top-level slot jobs, L3 browsers/artifacts.
 name: CI
 
 on:
@@ -15,7 +17,7 @@ concurrency:
 
 jobs:
   quality:
-    uses: nocoo/base-ci/.github/workflows/quality.yml@633a5545fcfec91b688840650d4edf3e9cc1abbd
+    uses: nocoo/base-ci/.github/workflows/quality.yml@1ea10ecab22b72512399485391603fe03a161016 # v2026.12
     with:
       package-manager: npm
       runtime-version: "11.20.0"
@@ -25,22 +27,27 @@ jobs:
       lockfiles: package-lock.json
       build: true
       build-command: npm run deploy:dry-run
-
-  browser:
-    uses: nocoo/base-ci/.github/workflows/test-job.yml@633a5545fcfec91b688840650d4edf3e9cc1abbd
-    with:
-      runtime: npm
-      runtime-version: "11.20.0"
-      node-version: "26.13.0"
-      install-policy: blocked
-      browser: chromium
-      command: npm run test:e2e
-      artifact-name: browser-report
-      artifact-path: playwright-report
-      artifact-retention-days: 7
-
-  workflow-lint:
-    uses: nocoo/base-ci/.github/workflows/workflow-lint.yml@633a5545fcfec91b688840650d4edf3e9cc1abbd
-    with:
-      required-reusable-workflow: nocoo/base-ci/.github/workflows/deploy-worker.yml
-      yamllint: true
+      workflow-lint: true
+      workflow-lint-required-workflow: nocoo/base-ci/.github/workflows/deploy-worker.yml
+      workflow-lint-yamllint: true
+      l3: true
+      l3-browsers: chromium
+      l3-command: npm run test:e2e
+      l3-artifact-name: browser-report
+      l3-artifact-path: |
+        playwright-report/
+        test-results/
+      l3-artifact-retention-days: 7
+      slot-status: >-
+        {"S1": {"status": "impl"},
+        "S2": {"status": "impl"},
+        "S3": {"status": "impl"},
+        "G1": {"status": "impl"},
+        "G2": {"status": "impl"},
+        "B1": {"status": "impl"},
+        "L1": {"status": "impl"},
+        "L1.5": {"status": "na", "reason": "无 @cloudflare/vitest-pool-workers / miniflare Worker 运行时测试套件；Worker 路由在 Vitest L1 覆盖"},
+        "L2": {"status": "na", "reason": "无独立 L2 API E2E 脚本；CI 内 /api/live 由 Playwright L3 webServer 拉起预览验收"},
+        "L3": {"status": "impl"},
+        "P1": {"status": "na", "reason": "package.json 为 private，不发布 npm 包"},
+        "Z1": {"status": "impl"}}
