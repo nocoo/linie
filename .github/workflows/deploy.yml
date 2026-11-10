@@ -16,7 +16,7 @@ jobs:
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.event == 'push' &&
       github.event.workflow_run.head_repository.full_name == github.repository
-    uses: nocoo/base-ci/.github/workflows/deploy-worker.yml@633a5545fcfec91b688840650d4edf3e9cc1abbd
+    uses: nocoo/base-ci/.github/workflows/deploy-worker.yml@1ea10ecab22b72512399485391603fe03a161016 # v2026.12
     secrets:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
