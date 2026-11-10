@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   quality:
-    uses: nocoo/base-ci/.github/workflows/quality.yml@af9a2b3f82c367d6eb6def5c3583ac717e0868ad
+    uses: nocoo/base-ci/.github/workflows/quality.yml@633a5545fcfec91b688840650d4edf3e9cc1abbd
     with:
       package-manager: npm
       runtime-version: "11.20.0"
@@ -27,7 +27,7 @@ jobs:
       build-command: npm run deploy:dry-run
 
   browser:
-    uses: nocoo/base-ci/.github/workflows/test-job.yml@af9a2b3f82c367d6eb6def5c3583ac717e0868ad
+    uses: nocoo/base-ci/.github/workflows/test-job.yml@633a5545fcfec91b688840650d4edf3e9cc1abbd
     with:
       runtime: npm
       runtime-version: "11.20.0"
@@ -40,7 +40,7 @@ jobs:
       artifact-retention-days: 7
 
   workflow-lint:
-    uses: nocoo/base-ci/.github/workflows/workflow-lint.yml@af9a2b3f82c367d6eb6def5c3583ac717e0868ad
+    uses: nocoo/base-ci/.github/workflows/workflow-lint.yml@633a5545fcfec91b688840650d4edf3e9cc1abbd
     with:
       required-reusable-workflow: nocoo/base-ci/.github/workflows/deploy-worker.yml
       yamllint: true
