@@ -53,11 +53,11 @@ Follows `system1-quality`; CI slot definitions and full-SHA-pinned actions (`noc
 
 ## Resources & Isolation
 
-| Lane | Endpoint / State | Boundary |
-| --- | --- | --- |
-| Dev | `https://linie.dev.hexly.ai` -> Caddy -> `127.0.0.1:7064` | Run in Herdr tab `dev server`; do not start background servers; local E2E uses running server |
-| CI E2E | `http://127.0.0.1:17064` (Playwright preview); `27064` reserved (BDD) | `CI=true` builds, starts/stops isolated preview, refuses occupied port |
-| Prod | `https://linie.hexly.ai` (Cloudflare Worker `linie` + assets) | Read-only checks unless publication is authorized; `workers.dev` and preview URLs disabled |
+| Lane   | Endpoint / State                                                      | Boundary                                                                                      |
+| ------ | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Dev    | `https://linie.dev.hexly.ai` -> Caddy -> `127.0.0.1:7064`             | Run in Herdr tab `dev server`; do not start background servers; local E2E uses running server |
+| CI E2E | `http://127.0.0.1:17064` (Playwright preview); `27064` reserved (BDD) | `CI=true` builds, starts/stops isolated preview, refuses occupied port                        |
+| Prod   | `https://linie.hexly.ai` (Cloudflare Worker `linie` + assets)         | Read-only checks unless publication is authorized; `workers.dev` and preview URLs disabled    |
 
 ## Retrospective
 
