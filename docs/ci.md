@@ -18,7 +18,7 @@ Coverage and browser HTML reports are retained for seven days. CI can cancel sup
 
 ## Deployment
 
-`.github/workflows/deploy.yml` runs only after the complete `CI` workflow succeeds for a push from this repository's `main` branch. PR/fork evidence is rejected. The pinned shared `deploy-worker.yml`:
+`.github/workflows/release.yml` runs only after the complete `CI` workflow succeeds for a push from this repository's `main` branch. PR/fork evidence is rejected. The pinned shared `deploy-worker.yml`:
 
 1. Validates the CI run ID, repository, event, canonical workflow, branch and exact source SHA using GitHub's API.
 2. Checks out and rebuilds that proven SHA with frozen dependencies.
@@ -33,14 +33,14 @@ A CI failure, missing credential, stale source or failed verification blocks the
 
 ## Production credentials
 
-Create the exact GitHub environment `production` in `nocoo/linie`. Restrict deployment branches to `main`; no manual reviewer is required for the requested automatic deployment. Store these environment secrets:
+Create the exact GitHub environment `production` in `nocoo/linie`. Restrict deployment branches to `main`; no manual reviewer is required for the requested automatic deployment. Store `CLOUDFLARE_API_TOKEN` as an environment secret and `CLOUDFLARE_ACCOUNT_ID` as an environment variable:
 
-| Secret                  | Value                                                                                                                    |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `CLOUDFLARE_API_TOKEN`  | A dedicated CI API token with the necessary Workers deployment and custom-domain permissions for the target account/zone |
-| `CLOUDFLARE_ACCOUNT_ID` | The account ID already declared in `cloudflare.config.ts`                                                                |
+| Kind | Name | Value |
+| --- | --- | --- |
+| Secret | `CLOUDFLARE_API_TOKEN` | A dedicated CI API token with the necessary Workers deployment and custom-domain permissions for the target account/zone |
+| Variable | `CLOUDFLARE_ACCOUNT_ID` | The account ID already declared in `cloudflare.config.ts` |
 
-The caller must explicitly pass both named secrets even when their values exist only in the environment. The called deployment job selects `production`, whose values take precedence. Omitting the caller mapping resolves the secrets to empty strings. The caller does not use `secrets: inherit`. Never commit a token, paste it into a command argument/history, or copy the local OAuth profile into GitHub. Set token values through GitHub's secret UI or an interactive `gh secret set` prompt.
+The caller explicitly passes `CLOUDFLARE_API_TOKEN` by name; the called deployment job selects `production` and reads `vars.CLOUDFLARE_ACCOUNT_ID` directly. The caller does not use `secrets: inherit`. Never commit a token, paste it into a command argument/history, or copy the local OAuth profile into GitHub. Set token values through GitHub's secret UI or an interactive `gh secret set` prompt.
 
 GitHub settings: https://github.com/nocoo/linie/settings/environments
 

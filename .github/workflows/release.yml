@@ -1,4 +1,4 @@
-name: Deploy
+name: Release
 
 on:
   workflow_run:
@@ -16,10 +16,9 @@ jobs:
       github.event.workflow_run.conclusion == 'success' &&
       github.event.workflow_run.event == 'push' &&
       github.event.workflow_run.head_repository.full_name == github.repository
-    uses: nocoo/base-ci/.github/workflows/deploy-worker.yml@bfaac83b5a4d5c7ed26320bb5b09f3ca0a01932c # v2026.18
+    uses: nocoo/base-ci/.github/workflows/deploy-worker.yml@98fc023423f82b010f17e0ebbc9dd580fe68736a # v2026.19-rc
     secrets:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     with:
       expected-workflow-path: .github/workflows/ci.yml
       expected-workflow-name: CI

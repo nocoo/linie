@@ -39,8 +39,8 @@ NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem" PLAYWRIGHT_BASE_URL=https://l
 - Anonymous `/api/live` reports Worker liveness and manifest version only, returning JSON with `Cache-Control: no-store` (never a cached SPA fallback); unknown `/api/*` returns JSON 404.
 - `package.json` is the authoritative version (injected by Vite and imported by the Worker); maintain [CHANGELOG.md](CHANGELOG.md) and follow [docs/deployment.md](docs/deployment.md).
 - Production deploys (`npm run deploy`) require explicit publication authorization; version changes and Cloudflare deploys do not authorize Git tags or GitHub Releases.
-- Keep `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in GitHub's `production` environment, passed by name to [deploy.yml](.github/workflows/deploy.yml); never expose to CI or `secrets: inherit`.
-- [deploy.yml](.github/workflows/deploy.yml) accepts only same-repo `main`-push CI (`quality / Z1: Gate`), proves source SHA, rejects stale `main`, and runs `cf` under a non-cancelling production lock.
+- Keep `CLOUDFLARE_API_TOKEN` (environment secret) and `CLOUDFLARE_ACCOUNT_ID` (environment variable) in GitHub's `production` environment, with `CLOUDFLARE_API_TOKEN` passed by name to [release.yml](.github/workflows/release.yml); never expose to CI or `secrets: inherit`.
+- [release.yml](.github/workflows/release.yml) accepts only same-repo `main`-push CI (`quality / Z1: Gate`), proves source SHA, rejects stale `main`, and runs `cf` under a non-cancelling production lock.
 
 ## Quality & Local Gates
 

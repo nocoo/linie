@@ -8,13 +8,11 @@ afterEach(() => {
 
 describe("deployment secret boundaries", () => {
   it("passes only the named production secrets to the reusable deployment job", async () => {
-    const deploy = await readFile(".github/workflows/deploy.yml", "utf8");
+    const deploy = await readFile(".github/workflows/release.yml", "utf8");
     expect(deploy).toContain(
       `CLOUDFLARE_API_TOKEN: \${{ secrets.CLOUDFLARE_API_TOKEN }}`,
     );
-    expect(deploy).toContain(
-      `CLOUDFLARE_ACCOUNT_ID: \${{ secrets.CLOUDFLARE_ACCOUNT_ID }}`,
-    );
+    expect(deploy).not.toContain("secrets.CLOUDFLARE_ACCOUNT_ID");
     expect(deploy).not.toMatch(/secrets:\s*inherit/);
     const ci = await readFile(".github/workflows/ci.yml", "utf8");
     expect(ci).not.toContain("secrets.");
