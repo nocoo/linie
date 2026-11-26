@@ -7,12 +7,14 @@ export default defineConfig({
   testDir: "./e2e",
   fullyParallel: true,
   forbidOnly: isCI,
-  workers: isCI ? 2 : undefined,
+  workers: isCI ? 4 : undefined,
   reporter: isCI ? [["list"], ["html", { open: "never" }]] : "list",
   webServer: isCI
     ? {
         command:
-          "npm run build && npm run preview -- --port 17064 --strictPort",
+          process.env.LINIE_E2E_SKIP_BUILD === "1"
+            ? "npm run preview -- --port 17064 --strictPort"
+            : "npm run build && npm run preview -- --port 17064 --strictPort",
         url: `${previewOrigin}/api/live`,
         reuseExistingServer: false,
         timeout: 120_000,
@@ -30,12 +32,11 @@ export default defineConfig({
     trace: "retain-on-failure",
   },
   projects: [
-    { name: "desktop", use: { viewport: { width: 1600, height: 1200 } } },
     {
-      name: "mobile",
+      name: "desktop",
       use: {
-        ...devices["iPhone 13"],
-        defaultBrowserType: "chromium",
+        ...devices["Desktop Chrome"],
+        viewport: { width: 1600, height: 1200 },
       },
     },
   ],

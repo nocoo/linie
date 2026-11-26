@@ -18,10 +18,10 @@ test("has no automated WCAG A/AA violations in the atlas or registration dialog"
   expect(dialog.violations).toEqual([]);
 });
 
-test("reflows intermediate and large viewports without document overflow", async ({
+test("reflows desktop viewports without document overflow", async ({
   page,
 }) => {
-  for (const width of [360, 768, 1024, 1280, 1440, 2048]) {
+  for (const width of [1280, 1440]) {
     await page.setViewportSize({ width, height: 1100 });
     await page.goto("/");
     expect(

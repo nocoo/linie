@@ -29,12 +29,21 @@ describe("browser CI isolation", () => {
     expect(config.use?.baseURL).toBe("http://127.0.0.1:17064");
     expect(config.use?.channel).toBe("chromium");
     expect(config.forbidOnly).toBe(true);
-    expect(config.workers).toBe(2);
+    expect(config.workers).toBe(4);
     expect(config.webServer).toMatchObject({
       command: "npm run build && npm run preview -- --port 17064 --strictPort",
       url: "http://127.0.0.1:17064/api/live",
       reuseExistingServer: false,
       gracefulShutdown: { signal: "SIGTERM", timeout: 5000 },
+    });
+  });
+
+  it("reuses the B1 build when LINIE_E2E_SKIP_BUILD is set", async () => {
+    vi.stubEnv("CI", "true");
+    vi.stubEnv("LINIE_E2E_SKIP_BUILD", "1");
+    const { default: config } = await import("../playwright.config");
+    expect(config.webServer).toMatchObject({
+      command: "npm run preview -- --port 17064 --strictPort",
     });
   });
 

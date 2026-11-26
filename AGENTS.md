@@ -15,7 +15,7 @@ npm run lint                # S2: Biome check-only, 0 warnings
 npm run test                # Vitest unit tests
 npm run test:coverage       # L1: >= 80% on models, viewmodels, worker, verify-deployment
 npm run check               # lint + typecheck + test:coverage
-npm run test:e2e            # L4: desktop/mobile Chrome vs running server; CI=true uses bundled Chromium on 127.0.0.1:17064
+npm run test:e2e            # L4: desktop Chrome core smoke vs running server; CI=true uses bundled Chromium on 127.0.0.1:17064 (reuses B1 output)
 npm run build               # tsc -b && cf build -> .cloudflare/output/v0/
 npm run deploy:dry-run      # B1: build + validate prebuilt Cloudflare output without uploading
 npm run deploy              # check + build + cf deploy --prebuilt --mode production (requires explicit authorization)
