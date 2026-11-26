@@ -35,10 +35,10 @@ A CI failure, missing credential, stale source or failed verification blocks the
 
 Create the exact GitHub environment `production` in `nocoo/linie`. Restrict deployment branches to `main`; no manual reviewer is required for the requested automatic deployment. Store `CLOUDFLARE_API_TOKEN` as an environment secret and `CLOUDFLARE_ACCOUNT_ID` as an environment variable:
 
-| Kind | Name | Value |
-| --- | --- | --- |
-| Secret | `CLOUDFLARE_API_TOKEN` | A dedicated CI API token with the necessary Workers deployment and custom-domain permissions for the target account/zone |
-| Variable | `CLOUDFLARE_ACCOUNT_ID` | The account ID already declared in `cloudflare.config.ts` |
+| Kind     | Name                    | Value                                                                                                                    |
+| -------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Secret   | `CLOUDFLARE_API_TOKEN`  | A dedicated CI API token with the necessary Workers deployment and custom-domain permissions for the target account/zone |
+| Variable | `CLOUDFLARE_ACCOUNT_ID` | The account ID already declared in `cloudflare.config.ts`                                                                |
 
 The caller explicitly passes `CLOUDFLARE_API_TOKEN` by name; the called deployment job selects `production` and reads `vars.CLOUDFLARE_ACCOUNT_ID` directly. The caller does not use `secrets: inherit`. Never commit a token, paste it into a command argument/history, or copy the local OAuth profile into GitHub. Set token values through GitHub's secret UI or an interactive `gh secret set` prompt.
 
