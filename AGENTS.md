@@ -39,12 +39,12 @@ NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem" PLAYWRIGHT_BASE_URL=https://l
 - Anonymous `/api/live` reports Worker liveness and manifest version only, returning JSON with `Cache-Control: no-store` (never a cached SPA fallback); unknown `/api/*` returns JSON 404.
 - `package.json` is the authoritative version (injected by Vite and imported by the Worker); maintain [CHANGELOG.md](CHANGELOG.md) and follow [docs/deployment.md](docs/deployment.md).
 - Production deploys (`npm run deploy`) require explicit publication authorization; version changes and Cloudflare deploys do not authorize Git tags or GitHub Releases.
-- Keep `CLOUDFLARE_API_TOKEN` (environment secret) and `CLOUDFLARE_ACCOUNT_ID` (environment variable) in GitHub's `production` environment, with `CLOUDFLARE_API_TOKEN` passed by name to [release.yml](.github/workflows/release.yml); never expose to CI or `secrets: inherit`.
-- [release.yml](.github/workflows/release.yml) accepts only same-repo `main`-push CI (`quality / Z1: Gate`), proves source SHA, rejects stale `main`, and runs `cf` under a non-cancelling production lock.
+- Keep `CLOUDFLARE_API_TOKEN` (environment secret) and `CLOUDFLARE_ACCOUNT_ID` (environment variable) in GitHub's `production` environment, with `CLOUDFLARE_API_TOKEN` passed by name to [pipeline.yml](.github/workflows/pipeline.yml); never expose to CI or `secrets: inherit`.
+- [pipeline.yml](.github/workflows/pipeline.yml) runs CI (`quality-slots.yml`, requiring `quality / Z1: Gate`) and D1-D5 Worker deploy (`deploy-worker.yml` pinned to `nocoo/base-ci` `v2026.24`) on `main` push (or `workflow_dispatch` with `deploy: true`), deploying the `b1-cf-output` artifact with locked `cf` under a non-cancelling production lock and running `npm run verify:deployment`.
 
 ## Quality & Local Gates
 
-Follows `system1-quality`; CI slot definitions and full-SHA-pinned actions (`nocoo/base-ci`) live in [quality-slots.yml](.github/workflows/quality-slots.yml) (`quality / Z1: Gate` gates deploy). Status vocabulary: `enforced`, `planned`, `manual`, `N/A`.
+Follows `system1-quality`; CI (`pipeline.yml` -> `quality-slots.yml`, full-SHA-pinned `nocoo/base-ci` `v2026.24`) gates CD (`deploy` job) on `quality / Z1: Gate`. Status vocabulary: `enforced`, `planned`, `manual`, `N/A`.
 
 - **Enforced CI slots**: `S1`–`S3`, `G1`, `G2`, `B1`, `L1`, `L4`, `P1` (aggregated by `Z1: Gate`); `S3` enforces 40-char SHA pinning on all external workflow actions.
 - **L1 coverage (80% all 4 metrics)**: covers `src/models`, `src/viewmodels`, `worker`, `scripts/verify-deployment.ts`; excludes pure Views, build config, and `verify-production.ts`.
