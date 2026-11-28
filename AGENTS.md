@@ -13,7 +13,7 @@ npm run dev                 # cf dev (Vite + workerd on 127.0.0.1:7064; https://
 npm run typecheck           # S1: tsc -b
 npm run lint                # S2: Biome check-only, 0 warnings
 npm run test                # Vitest unit tests
-npm run test:coverage       # L1: >= 80% on models, viewmodels, worker, verify-deployment
+npm run test:coverage       # L1: >= 90/85% on models, viewmodels, worker, verify-deployment
 npm run check               # lint + typecheck + test:coverage
 npm run test:e2e            # L4: desktop Chrome core smoke vs running server; CI=true uses bundled Chromium on 127.0.0.1:17064 (reuses B1 output)
 npm run build               # tsc -b && cf build -> .cloudflare/output/v0/
@@ -47,7 +47,7 @@ NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem" PLAYWRIGHT_BASE_URL=https://l
 Follows `system1-quality`; CI (`pipeline.yml` -> `quality-slots.yml`, full-SHA-pinned `nocoo/base-ci` `v2026.24`) gates CD (`deploy` job) on `quality / Z1: Gate`. Status vocabulary: `enforced`, `planned`, `manual`, `N/A`.
 
 - **Enforced CI slots**: `S1`–`S3`, `G1`, `G2`, `B1`, `L1`, `L4`, `P1` (aggregated by `Z1: Gate`); `S3` enforces 40-char SHA pinning on all external workflow actions.
-- **L1 coverage (80% all 4 metrics)**: covers `src/models`, `src/viewmodels`, `worker`, `scripts/verify-deployment.ts`; excludes pure Views, build config, and `verify-production.ts`.
+- **L1 coverage (90% st/fn/ln, 85% br)**: covers `src/models`, `src/viewmodels`, `worker`, `scripts/verify-deployment.ts`; excludes pure Views, build config, and `verify-production.ts`.
 - **Exceptions / gaps**: `L2 Runtime` is `N/A` (Worker routes covered in Vitest `L1`); `L3 Integration` is `N/A` (covered by `L4` Playwright).
 - **Local hooks**: automated `pre-commit` / `pre-push` hooks are `planned` (none configured); run `npm run check` (`manual`) before commits and `npm run test:e2e` against the running server before pushing.
 

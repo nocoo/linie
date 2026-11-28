@@ -19,7 +19,7 @@ export default defineConfig({
         "scripts/verify-deployment.ts",
       ],
       exclude: ["**/*.test.ts"],
-      thresholds: { statements: 80, branches: 80, functions: 80, lines: 80 },
+      thresholds: { statements: 90, lines: 90, functions: 90, branches: 85 },
     },
   },
 });
